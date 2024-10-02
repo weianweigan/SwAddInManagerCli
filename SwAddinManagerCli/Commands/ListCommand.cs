@@ -21,10 +21,10 @@ public class ListCommand : Command<ListCommand.Settings>
 
         // output
         var table = new Table();
-        table.AddColumns("Version", "ServicePack");
+        table.AddColumns("Version", "Path");
         foreach (var sw in solidworks)
         {
-            table.AddRow(sw.DisplayName, sw.ServicePack.ToString());
+            table.AddRow(sw.DisplayName, sw.ExePath.ToString());
         }
         AnsiConsole.Write(table);
 

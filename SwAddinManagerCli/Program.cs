@@ -13,13 +13,11 @@ internal class Program
         {
             config.AddCommand<ListCommand>("list");
 
-            config.AddCommand<DisableAllCommand>("disable");
-            config.AddCommand<DisableAllCommand>("enable");
+            config.AddCommand<DisableCommand>("disable");
+            config.AddCommand<EnableCommand>("enable");
 
-            config.AddCommand<DisableAllCommand>("enableall");
+            config.AddCommand<EnableAllCommand>("enableall");
             config.AddCommand<DisableAllCommand>("disableall");
-
-            // config.SetHelpProvider<SwAddinManagerHelpProvider>();
         });
 
         return app.Run(args);

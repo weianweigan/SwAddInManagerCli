@@ -8,9 +8,9 @@ public class DisableCommand : Command<DisableCommand.Settings>
 {
     public override int Execute(CommandContext context, Settings settings)
     {
-        if (!string.IsNullOrEmpty(settings.AddInName)) 
+        if (string.IsNullOrEmpty(settings.AddInName)) 
         {
-            AnsiConsole.WriteLine($"[red]Please input addIn name that you want to disabled![/]");
+            AnsiConsole.MarkupLine($"[red]Please input addIn name that you want to disabled![/]");
             return 1;
         }
 
@@ -30,7 +30,7 @@ public class DisableCommand : Command<DisableCommand.Settings>
                     ?.AddInID.ToString();
                 if (string.IsNullOrWhiteSpace(id))
                 {
-                    AnsiConsole.WriteLine($"[red]Cannot find addin: {name}[/]");
+                    AnsiConsole.MarkupLine($"[red]Cannot find addin: {name}[/]");
                 }
                 else
                 {

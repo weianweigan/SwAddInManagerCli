@@ -9,9 +9,9 @@ public class EnableCommand : Command<EnableCommand.Settings>
 {
     public override int Execute(CommandContext context, Settings settings)
     {
-        if (!string.IsNullOrEmpty(settings.AddInName))
+        if (string.IsNullOrEmpty(settings.AddInName))
         {
-            AnsiConsole.WriteLine($"[red]Please input addIn name that you want to enable![/]");
+            AnsiConsole.MarkupLine($"[red]Please input addIn name that you want to enable![/]");
             return 1;
         }
 
@@ -31,7 +31,7 @@ public class EnableCommand : Command<EnableCommand.Settings>
                     ?.AddInID.ToString();
                 if (string.IsNullOrWhiteSpace(id))
                 {
-                    AnsiConsole.WriteLine($"[red]Cannot find addin: {name}[/]");
+                    AnsiConsole.MarkupLine($"[red]Cannot find addin: {name}[/]");
                 }
                 else
                 {
@@ -43,12 +43,9 @@ public class EnableCommand : Command<EnableCommand.Settings>
         AddInUtils.EnableAddInsStartup(enableAddInIds);
         if (settings.Only == true)
         { 
-            AddInUtils.DisableAllAddInsStartup(out _, enableAddInNames);
+            AddInUtils.DisableAllAddInsStartup(out _, [.. enableAddInIds]);
         };
 
-        AddInUtils.DisableAddInsStartup(
-            [.. enableAddInIds]
-        );
         return 0;
     }
 

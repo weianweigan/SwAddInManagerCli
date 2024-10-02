@@ -24,7 +24,7 @@ public class DisableAllCommand : Command<DisableAllCommand.Settings>
                     ?.AddInID.ToString();
                 if (string.IsNullOrWhiteSpace(id))
                 {
-                    AnsiConsole.WriteLine($"[red]Cannot find addin: {name}[/]");
+                    AnsiConsole.MarkupLine($"[red]Cannot find addin: {name}[/]");
                 }
                 else
                 {

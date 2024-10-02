@@ -19,7 +19,7 @@ public class EnableAllCommand : Command<EnableAllCommand.Settings>
                     .FirstOrDefault(p => p.Title == name || p.AddInID.ToString() == name);
                 if (addin == null)
                 {
-                    AnsiConsole.WriteLine($"[red]Cannot find addin: {name}[/]");
+                    AnsiConsole.MarkupLine($"[red]Cannot find addin: {name}[/]");
                 }
                 else
                 {
@@ -31,7 +31,7 @@ public class EnableAllCommand : Command<EnableAllCommand.Settings>
         AddInUtils.EnableAddInsStartup(
             addInsList.Select(p => p.AddInID.ToString()).ToList()
         );
-        AnsiConsole.WriteLine("[blue]Finished[/]");
+        AnsiConsole.MarkupLine("[blue]Finished![/]");
 
         return 0;
     }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Spectre.Console;
 
 namespace SwAddinManagerCli.Utils;
 
@@ -118,10 +119,14 @@ internal static class AddInUtils
             disabledAddInGuids = [];
             return;
         }
-        string[] array = subKeyNames;
-        foreach (string text in array)
+        foreach (string addinId in subKeyNames)
         {
-            RegistryKey? subRegistryKey = registryKey.OpenSubKey(text, writable: true);
+            if (skipAddins?.Contains(addinId[1..^1]) == true)
+            {
+                continue;
+            }
+
+            RegistryKey? subRegistryKey = registryKey.OpenSubKey(addinId, writable: true);
             if (subRegistryKey == null)
             {
                 continue;
@@ -132,7 +137,7 @@ internal static class AddInUtils
             )
             {
                 subRegistryKey.SetValue("", 0);
-                list.Add(text);
+                list.Add(addinId);
             }
         }
 
@@ -165,7 +170,7 @@ internal static class AddInUtils
             }
 
             string id = Path.GetFileName(subRegistryKey.Name);
-            if (!addInIds.Contains(id))
+            if (!addInIds.Contains(id.Substring(1, id.Length - 2)))
             {
                 continue;
             }
@@ -189,7 +194,8 @@ internal static class AddInUtils
         );
         foreach (string addInGuid in addInGuids)
         {
-            registryKey?.OpenSubKey(addInGuid, writable: true)?.SetValue("", 1);
+            var subKey = registryKey?.OpenSubKey($"{{{addInGuid}}}", writable: true);
+            subKey?.SetValue("", 1);
         }
     }
 }
