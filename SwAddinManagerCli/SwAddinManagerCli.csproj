@@ -13,10 +13,10 @@
     <ApplicationIcon>SwAddInManager.ico</ApplicationIcon>
   </PropertyGroup>
 
-  <PropertyGroup>
+<!--  <PropertyGroup>
       <PublishSingleFile>true</PublishSingleFile>
       <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-  </PropertyGroup>
+  </PropertyGroup>-->
 
   <PropertyGroup>
     <PackAsTool>true</PackAsTool>
