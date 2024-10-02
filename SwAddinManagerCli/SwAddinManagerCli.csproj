@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <ApplicationIcon>SwAddInManager.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup>
+      <PublishSingleFile>true</PublishSingleFile>
+      <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>swaddinmgr</ToolCommandName>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Description>Cli tool that enable or disable solidworks addIns startup state.</Description>
+    <PackageIcon>SwAddInManager.png</PackageIcon>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
+    <PackageTags>Solidworks;Addin;Cli</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="SwAddInManager.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\SwAddInManager.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Spectre.Console.Analyzer" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Spectre.Console.Cli" Version="0.49.2-preview.0.44" />
+  </ItemGroup>
+
+</Project>
